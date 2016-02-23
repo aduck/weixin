@@ -1,0 +1,106 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li{list-style:none;}
+img{
+	max-width:100%;
+	height:auto;
+}
+.pull-left{float:left;}
+.pull-right{float:right;}
+.clearfix:after{
+	content:"";
+	height:0;
+	display:block;
+	visibility:hidden;
+	clear:both;
+}
+.container{
+	width:32rem;
+	margin:auto;
+}
+.bg-lucky{
+	background:#e82738 url(http://img.easeeyes.com/promotion/wx/bg2.jpg) no-repeat center top;
+	background-size:100% auto; 
+	height:31.5rem;
+}
+.box-lucky{
+	width:24rem;
+	margin:auto;
+	padding-top:1rem;
+}
+.box-lucky li{
+	float:left;
+	width:33.3333%;
+	position:relative;
+}
+.box-lucky li.current:after{
+	content:"";
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(255,110,3,.3);
+}
+.box-lucky li img{display:block;}
+.box-ipt-lucky{
+	height:6.5rem;
+	text-align:center;
+	background:url(http://img.easeeyes.com/promotion/wx/02.jpg) no-repeat center top;
+	background-size:100% auto;
+	box-sizing:border-box;
+	font-family:"Microsoft Yahei";
+	padding-top:.3rem;
+}
+.box-ipt-lucky p{color:#444;line-height:1.2;}
+.box-ipt-lucky b{
+	color:#dc0918;
+	font-size:1.2rem;
+}
+.box-ipt-lucky input{
+	border:1px solid #b8a7a0;
+	color:#9e9e9e;
+	background:#fff;
+	padding:.1rem;
+	height:1.4rem;
+	border-radius:0;
+}
+.box-ipt-lucky input:focus{color:#666;}
+.box-ipt-lucky button{
+	border:0 none;
+	background:#ae1b23;
+	color:#fff;
+	width:10rem;
+	height:2rem;
+	line-height:2rem;
+	font-size:1.2rem;
+	font-family:"Microsoft Yahei";
+	margin:.4rem;
+}
+.box-slide{overflow:hidden;height:6rem;}
+.ulist-slide{position:relative;}
+.ulist-slide li{line-height:1.5rem;height:1.5rem;color:#7c1c0c;}
+.box-md{text-align:center;background:url(http://img.easeeyes.com/promotion/wx/md_bg.png) no-repeat center top;background-size:100% auto;width:23.15rem;height:20.75rem;margin:auto;}
+.box-md h2{color:#bc1a2f;font-size:1.5rem;line-height:1;padding:2.25rem 0 1rem;}
+.box-search{padding-bottom:1rem;}
+.box-search .ipt-search{border:1px solid #9d8e93;width:12rem;height:1.8rem;line-height:1.4rem;box-sizing:border-box;padding:.2rem;vertical-align:middle;border-radius:0;}
+.box-search .btn-search{border:0 none;background:#e52534;color:#fff;font-size:1rem;line-height:1.8rem;width:3.4rem;height:1.8rem;vertical-align:middle;}
+.box-result-search p{text-align:center;color:#7c1c0c;font-size:1.1rem;height:6rem;}
+.bg-md{background:url(http://img.easeeyes.com/promotion/wx/md_2.jpg) no-repeat center top;background-size:100% auto;height:27.95rem;}
+.btn-back{display:inline-block;text-align:center;text-decoration:none;width:8.2rem;height:2.4rem;line-height:2.4rem;border:0 none;background:#ba1f27;color:#fff;font-size:1.2rem;margin-top:1rem;}
+.ulist-slide.ani{animation:top 1s;-webkit-animation:top 1s;}
+@keyframes top{
+	0%{}
+	100%{
+		transform:translate(0,-1.5rem);
+	}
+}
+@-webkit-keyframes top{
+	0%{}
+	100%{
+		transform:translate(0,-1.5rem);
+		-webkit-transform:translate(0,-1.5rem);
+	}
+}

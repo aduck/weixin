@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+<title>Lucky</title>
+<link rel="stylesheet" href="http://file.easeeyes.com/wap/css/lucky.css" />
+<style>
+body{background:#e72435;}	
+</style>
+<script src="http://file.easeeyes.com/js/response.js"></script>
+</head>
+<body>
+<div class="container">
+	<div style="position:relative;">
+		<img src="http://img.easeeyes.com/promotion/wx/01.jpg" style="display:block;" />
+		<img src="http://img.easeeyes.com/promotion/wx/ewm.jpg" style="position:absolute;right:.5rem;top:.9rem;width:4.6rem;" />
+	</div>	
+	<div class="box-ipt-lucky">
+		<form id="checkform">
+			<p><b>手机号码</b> <input type="text" value="" placeholder="请输入正确的手机号码" id="phone" /></p>
+			<p><button>立即抽奖</button></p>
+			<p>（活动时间：2.5-2.25）</p>
+		</form>
+	</div>
+	<div><img src="http://img.easeeyes.com/promotion/wx/03.jpg" /></div>
+</div>
+<script>
+// 手机号码验证
+function testPhone(e){
+	var val=document.getElementById('phone').value,
+		reg=/^^[1][3578][0-9]{9}$/;
+	if(!reg.test(val)){
+		alert("请输入正确的手机号码")
+		e.preventDefault();
+	}
+}
+document.addEventListener('DOMContentLoaded',function(){
+	var form=document.getElementById('checkform');
+	form.addEventListener('submit',testPhone,false);
+},false);
+</script>
+</body>
+</html>

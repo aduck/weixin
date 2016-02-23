@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+<title>Document</title>
+<link rel="stylesheet" href="http://file.easeeyes.com/wap/css/lucky.css" />
+<script src="http://file.easeeyes.com/js/response.js"></script>
+<style>body{background:#e82335}</style>
+</head>
+<body>
+<div class="container">
+	<div style="position:relative;">
+		<img src="http://img.easeeyes.com/promotion/wx/md_1.jpg" style="display:block;" />
+		<img src="http://img.easeeyes.com/promotion/wx/ewm.jpg" style="position:absolute;right:.5rem;top:.9rem;width:4.6rem;" />
+	</div>
+	<div class="bg-md">
+		<div class="box-md">
+			<h2>中奖名单</h2>
+			<div class="box-search">
+				<form id="checkform">
+					<input type="input" class="ipt-search" id="phone" /><button class="btn-search">搜索</button>
+				</form>
+			</div>
+			<!-- 中奖名单滚动区域/默认页面 -->
+			<div class="box-slide">
+				<ul class="ulist-slide" id="ulist-slide">
+					<li>138****1234 二等奖</li>
+					<li>138****1234 二等奖</li>
+					<li>138****1234 二等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+					<li>138****1234 三等奖</li>
+				</ul>
+			</div>
+			
+			<!--查询结果模板
+			<div class="box-result-search">
+				<p>未中奖</p>
+			</div>
+			-->
+			<a class="btn-back" href="javascript:history.go(-1);">返 回</a>
+		</div>
+	</div>
+</div>
+<script>
+// 名单滚动效果
+window.addEventListener('load',loadHandle,false);
+function loadHandle(){
+	var ulist=document.getElementById('ulist-slide');
+	function slide(){
+		try{
+			ulist.classList.add('ani');
+			setTimeout(function(){
+				ulist.appendChild(ulist.getElementsByTagName('li')[0]);
+				ulist.classList.remove('ani');
+			},1000);
+		}catch(e){
+			//
+		}		
+	}
+	setInterval(slide,3000);
+}
+// 手机号码验证
+function testPhone(e){
+	var val=document.getElementById('phone').value,
+		reg=/^^[1][3578][0-9]{9}$/;
+	if(!reg.test(val)){
+		alert("请输入正确的手机号码")
+		e.preventDefault();
+	}
+}
+document.addEventListener('DOMContentLoaded',function(){
+	var form=document.getElementById('checkform');
+	form.addEventListener('submit',testPhone,false);
+},false);
+</script>	
+</body>
+</html>

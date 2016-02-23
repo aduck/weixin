@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+<title>Lucky</title>
+<link rel="stylesheet" href="http://file.easeeyes.com/wap/css/lucky.css" />
+<style>
+html,body,.container{height:100%;}
+</style>
+<script src="http://file.easeeyes.com/js/response.js"></script>
+</head>
+<body>
+<div class="container">
+	<div style="position:relative;">
+		<img src="http://img.easeeyes.com/promotion/wx/bg1.jpg" style="display:block;" />
+		<img src="http://img.easeeyes.com/promotion/wx/ewm.jpg" style="position:absolute;right:.5rem;top:.9rem;width:4.6rem;" />
+	</div>
+	<div class="bg-lucky">
+		<div class="box-lucky" id="box-lucky">
+			<ul class="clearfix ulist-lucky">
+				<li class="item-lucky" id="lucky-01"><img src="http://img.easeeyes.com/promotion/wx/p1.jpg" /></li>
+				<li class="item-lucky" id="lucky-02"><img src="http://img.easeeyes.com/promotion/wx/p2.jpg" /></li>
+				<li class="item-lucky" id="lucky-03"><img src="http://img.easeeyes.com/promotion/wx/p3.jpg" /></li>
+				<li class="item-lucky" id="lucky-08"><img src="http://img.easeeyes.com/promotion/wx/p8.jpg" /></li>
+				<li class="item-lucky" id="btn-lucky"><img src="http://img.easeeyes.com/promotion/wx/btn.jpg" /></li>
+				<li class="item-lucky" id="lucky-04"><img src="http://img.easeeyes.com/promotion/wx/p4.jpg" /></li>
+				<li class="item-lucky" id="lucky-07"><img src="http://img.easeeyes.com/promotion/wx/p7.jpg" /></li>
+				<li class="item-lucky" id="lucky-06"><img src="http://img.easeeyes.com/promotion/wx/p6.jpg" /></li>
+				<li class="item-lucky" id="lucky-05"><img src="http://img.easeeyes.com/promotion/wx/p5.jpg" /></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+;(function(){
+	// 配置信息
+	var options={
+		indexRange:[3,6],	// 开始加速或减速的范围
+		roundRange:[3,4],	// 旋转的圈数范围
+		interval:500,		// 初始速度
+		num:8 				// 奖品个数
+	}
+
+	// 声明相关变量
+	var interval=options.interval,	// 间隔
+		index,	// 位置
+		fast,	// 开始加速或减速的位置
+		round,	// 剩余圈数
+		luckys,	// 奖品
+		started=false;	// 是否开始
+
+	// 随机数
+	function range(arr){
+		var n=Math.round(Math.random()*(arr[1]-arr[0])+arr[0]);
+		return n;
+	}	
+
+	// 抽奖过程
+	function lucky(){
+		// 圈数计数
+		if(index>8){
+			index=1;
+			round--;
+		}
+
+		// 状态显示
+		var items=document.querySelectorAll('.item-lucky');
+		Array.prototype.slice.call(items,0).forEach(function(item){
+			item.classList.remove('current');
+		});
+		document.getElementById('lucky-0'+index).classList.add('current');
+
+		// 开始加速
+		if(index>fast){
+			interval=200;
+		}
+
+		// 开始减速
+		if(round==0 && luckys.id-index<fast){
+			interval+=200;
+		}
+		
+		if(round<=0 && index==luckys.id){
+			// 选中奖品，结束
+			clearTimeout(luckyMover);
+			setTimeout(function(){
+				alert("恭喜获得"+luckys.name);
+			},1000)
+			started=false;
+		}else{
+			// 没有结束
+			luckyMover=setTimeout(lucky,interval);
+		}
+		index++;
+	}
+
+	// 开始抽奖
+	function start(){
+		if(started){
+			return;
+		}
+		started=true;
+		index=1;
+		fast=range(options.indexRange);
+		round=range(options.roundRange);
+		var xhr=new XMLHttpRequest();
+		xhr.open('get',"test.json",true);
+		xhr.send(null);
+		xhr.onreadystatechange=function(){
+			if(xhr.status==200 && xhr.readyState==4){
+				luckys=JSON.parse(xhr.responseText);
+				lucky();
+			}
+		}
+	}
+
+	// 绑定事件
+	document.getElementById('btn-lucky').addEventListener('click',start,false);
+
+})();
+
+</script>
+</body>
+</html>
